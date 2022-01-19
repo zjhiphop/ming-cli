@@ -10,7 +10,7 @@ Ming CLI Tool for web and mobile development
 ### Goal
 > Provide a programmatic and progressive enhancement of utilities based tool to build faster for different level projects
 
-![Goal][/assets/architect.jpg]
+![Goal](/assets/architect.jpg)
 
 ### Road Map
 - [x] Provide a basic project template based on Vue3 and init scripts
