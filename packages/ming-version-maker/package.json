@@ -1,11 +1,11 @@
 {
   "name": "ming-version-maker",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "version marker for @ming/cli",
   "author": "zjhiphop",
   "license": "MIT",
   "main": "package.json",
   "devDependencies": {
-    "@ming/cli": "1.0.0"
+    "@ming/cli": "^0.0.1"
   }
 }

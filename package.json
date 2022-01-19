@@ -1,14 +1,37 @@
 {
   "name": "root",
+  "engines": {
+    "node": ">=10",
+    "pnpm": ">=6"
+  },
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
-    "lerna": "^4.0.0",
     "vitepress": "^0.21.4"
   },
-  "packageManager": "yarn@1.22.5"
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "packages/*/{src,types}/**/*.ts": [
+      "eslint --ext .ts"
+    ],
+    "packages/**/*.d.ts": [
+      "eslint --ext .ts"
+    ]
+  },
+  "packageManager": "pnpm@6.27.0",
+  "dependencies": {
+    "@changesets/cli": "^2.19.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@ming/cli": "workspace:*"
+    }
+  }
 }

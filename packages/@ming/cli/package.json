@@ -1,6 +1,6 @@
 {
-  "name": "mingcli",
-  "version": "0.0.0",
+  "name": "@ming/cli",
+  "version": "0.0.1",
   "description": "MingLabs CLI Tool",
   "author": "Jade",
   "bin": {
