@@ -8,10 +8,12 @@ importers:
   .:
     specifiers:
       '@changesets/cli': ^2.19.0
+      simple-git-hooks: ^2.7.0
       ts-node: ^10.2.1
       vitepress: ^0.21.4
     dependencies:
       '@changesets/cli': 2.19.0
+      simple-git-hooks: 2.7.0
       ts-node: 10.4.0
     devDependencies:
       vitepress: 0.21.4
@@ -5363,6 +5365,12 @@ packages:
 
   /signal-exit/3.0.6:
     resolution: {integrity: sha512-sDl4qMFpijcGw22U5w63KmD3cZJfBuFlVNbVMKje2keoKML7X2UzWbc4XrmEbDwg0NXJc3yv4/ox7b+JWb57kQ==}
+
+  /simple-git-hooks/2.7.0:
+    resolution: {integrity: sha512-nQe6ASMO9zn5/htIrU37xEIHGr9E6wikXelLbOeTcfsX2O++DHaVug7RSQoq+kO7DvZTH37WA5gW49hN9HTDmQ==}
+    hasBin: true
+    requiresBuild: true
+    dev: false
 
   /slash/1.0.0:
     resolution: {integrity: sha1-xB8vbDn8FtHNF61LXYlhFK5HDVU=}

@@ -11,7 +11,7 @@
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"
   },
-  "simple-git-hooks": {
+  "simple-git-c": {
     "pre-commit": "pnpm exec lint-staged --concurrent false",
     "commit-msg": "pnpm exec ts-node scripts/verifyCommit.ts $1"
   },
@@ -32,6 +32,7 @@
   "packageManager": "pnpm@6.27.0",
   "dependencies": {
     "@changesets/cli": "^2.19.0",
+    "simple-git-hooks": "^2.7.0",
     "ts-node": "^10.2.1"
   },
   "pnpm": {
