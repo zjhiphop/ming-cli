@@ -1,0 +1,13 @@
+{
+  "name": "test-cli",
+  "version": "1.0.0",
+  "description": "test cli",
+  "scripts": {
+    "dev": "mingcli"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ming/cli": "^0.0.1"
+  }
+}
