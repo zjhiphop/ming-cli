@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const cli = require('..');
+const cli = require('..')
 
 describe('@ming/cli', () => {
-    it('needs tests');
-});
+  it('needs tests')
+})
