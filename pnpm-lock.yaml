@@ -9,6 +9,8 @@ importers:
     specifiers:
       '@changesets/cli': ^2.19.0
       lint-staged: ^12.2.0
+      picocolors: ^1.0.0
+      prettier: ^2.5.1
       prompts: ^2.4.2
       simple-git-hooks: ^2.7.0
       ts-node: ^10.2.1
@@ -16,6 +18,8 @@ importers:
     dependencies:
       '@changesets/cli': 2.19.0
       lint-staged: 12.2.0
+      picocolors: 1.0.0
+      prettier: 2.5.1
       prompts: 2.4.2
       simple-git-hooks: 2.7.0
       ts-node: 10.4.0
@@ -5050,6 +5054,12 @@ packages:
   /prettier/1.19.1:
     resolution: {integrity: sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==}
     engines: {node: '>=4'}
+    hasBin: true
+    dev: false
+
+  /prettier/2.5.1:
+    resolution: {integrity: sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==}
+    engines: {node: '>=10.13.0'}
     hasBin: true
     dev: false
 
