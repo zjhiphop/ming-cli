@@ -2,6 +2,7 @@
 const fs = require('fs')
 const path = require('path')
 const prompts = require('prompts')
+const extract = require('fast-extract')
 import { exec } from './exec'
 
 const {
@@ -17,14 +18,17 @@ const {
 
 const cwd = process.cwd()
 
-const renameFiles = {
+const renameFiles: {
+  _gitignore: string
+} = {
   _gitignore: '.gitignore'
 }
 
-async function init(targetDir, template) {
+async function init(targetDir: string, template: string): Promise<any> {
   const defaultProjectName = targetDir || 'ming-project'
+  const ORG = 'minglabs-sz'
 
-  let result = {}
+  let result: any = {}
 
   try {
     result = await prompts(
@@ -34,7 +38,7 @@ async function init(targetDir, template) {
           name: 'projectName',
           message: reset('Project name:'),
           initial: defaultProjectName,
-          onState: (state) =>
+          onState: (state: any) =>
             (targetDir = state.value.trim() || defaultProjectName)
         },
         {
@@ -48,7 +52,7 @@ async function init(targetDir, template) {
             ` is not empty. Remove existing files and continue?`
         },
         {
-          type: (_, { overwrite } = {}) => {
+          type: (_: any, { overwrite }: { overwrite?: boolean } = {}) => {
             if (overwrite === false) {
               throw new Error(red('✖') + ' Operation cancelled')
             }
@@ -61,7 +65,7 @@ async function init(targetDir, template) {
           name: 'packageName',
           message: reset('Package name:'),
           initial: () => toValidPackageName(targetDir),
-          validate: (dir) =>
+          validate: (dir: string) =>
             isValidPackageName(dir) || 'Invalid package.json name'
         }
       ],
@@ -71,11 +75,11 @@ async function init(targetDir, template) {
         }
       }
     )
-  } catch (cancelled) {
+  } catch (cancelled: any) {
     console.log(cancelled.message)
     return
   }
-
+  ;``
   // user choice associated with prompts
   const { overwrite, packageName } = result
 
@@ -90,21 +94,44 @@ async function init(targetDir, template) {
   console.log(`\nScaffolding project in ${root}...`)
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
-  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+  const pkgManager = pkgInfo ? pkgInfo.name : 'pnpm'
+
+  const isPkgManagerExists =
+    (await exec(`which ${pkgManager}`)).indexOf('not found') === -1
+
+  if (!isPkgManagerExists) {
+    console.log(`Package manager not found: ${pkgManager}`)
+    return
+  }
 
   // download unpacked tar package to target directory
   try {
-    process.chdir(root)
+    const pkg = `@${ORG}/template-${template}`
+    // download package from npm
+    await exec(`npm pack ${pkg}`)
 
-    await exec(`npm pack @ming/template-${$template}`)
+    const latestVersion = await exec(`npm view ${pkg} version`)
+
     // use tar to unpack all
-    const pkgName = `ming-template-${$template}-latest.tgz`
+    const pkgName = `${ORG}-template-${template}-${latestVersion.replace(
+      /\s/,
+      ''
+    )}.tgz`
 
-    await exec(`tar -xzf ${pkgName}`)
+    console.log('Package Name: ', pkgName)
+
+    // extract package
+    await extract(pkgName, root, { strip: 1 })
+
+    // delete package
+    await exec(`rm -f ${pkgName}`)
+
+    // go inside target dir
+    process.chdir(root)
 
     // install dependencies
     await exec(`${pkgManager} install`)
-  } catch (e) {
+  } catch (e: any) {
     console.log(e.message)
     return
   }
@@ -113,27 +140,20 @@ async function init(targetDir, template) {
 
   pkg.name = packageName || targetDir
 
-  write('package.json', JSON.stringify(pkg, null, 2))
+  fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2))
 
   console.log(`\nDone. Now run:\n`)
+
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`)
   }
 
-  switch (pkgManager) {
-    case 'yarn':
-      console.log('  yarn')
-      console.log('  yarn dev')
-      break
-    default:
-      console.log(`  ${pkgManager} install`)
-      console.log(`  ${pkgManager} run dev`)
-      break
-  }
+  console.log(`  ${pkgManager} dev`)
+
   console.log()
 }
 
-function copy(src, dest) {
+function copy(src: string, dest: string) {
   const stat = fs.statSync(src)
   if (stat.isDirectory()) {
     copyDir(src, dest)
@@ -142,13 +162,13 @@ function copy(src, dest) {
   }
 }
 
-function isValidPackageName(projectName) {
+function isValidPackageName(projectName: string) {
   return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
     projectName
   )
 }
 
-function toValidPackageName(projectName) {
+function toValidPackageName(projectName: string) {
   return projectName
     .trim()
     .toLowerCase()
@@ -157,7 +177,7 @@ function toValidPackageName(projectName) {
     .replace(/[^a-z0-9-~]+/g, '-')
 }
 
-function copyDir(srcDir, destDir) {
+function copyDir(srcDir: string, destDir: string) {
   fs.mkdirSync(destDir, { recursive: true })
   for (const file of fs.readdirSync(srcDir)) {
     const srcFile = path.resolve(srcDir, file)
@@ -166,11 +186,11 @@ function copyDir(srcDir, destDir) {
   }
 }
 
-function isEmpty(path) {
+function isEmpty(path: string) {
   return fs.readdirSync(path).length === 0
 }
 
-function emptyDir(dir) {
+function emptyDir(dir: string) {
   if (!fs.existsSync(dir)) {
     return
   }
@@ -190,7 +210,7 @@ function emptyDir(dir) {
  * @param {string | undefined} userAgent process.env.npm_config_user_agent
  * @returns object | undefined
  */
-function pkgFromUserAgent(userAgent) {
+function pkgFromUserAgent(userAgent: string | undefined) {
   if (!userAgent) return undefined
   const pkgSpec = userAgent.split(' ')[0]
   const pkgSpecArr = pkgSpec.split('/')
@@ -200,7 +220,7 @@ function pkgFromUserAgent(userAgent) {
   }
 }
 
-// init().catch((e) => {
+// init("ming-test", "vue3").catch((e) => {
 //   console.error(e)
 // })
 

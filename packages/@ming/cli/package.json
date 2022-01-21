@@ -1,5 +1,5 @@
 {
-  "name": "@ming/cli",
+  "name": "@minglabs-sz/cli",
   "version": "0.0.1",
   "description": "MingLabs CLI Tool",
   "author": "Jade",
@@ -29,6 +29,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.0.1",
     "cli-ux": "^6.0.8",
+    "fast-extract": "^0.3.1",
     "inquirer": "^8.2.0",
     "kolorist": "^1.5.1",
     "nock": "^13.2.2",
@@ -76,6 +77,7 @@
     "posttest": "yarn lint",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "test": "TEST=* mocha --forbid-only \"test/**/*.test.ts\"",
+    "test-cli": "TEST=* mocha --forbid-only \"__tests__/**/*.test.ts\"",
     "version": "oclif readme && git add README.md"
   },
   "engines": {

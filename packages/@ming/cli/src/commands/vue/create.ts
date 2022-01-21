@@ -1,6 +1,7 @@
 import { Command, Flags } from '@oclif/core'
 import { pull, mkdir, exec } from '../../utils/exec'
 import cli from 'cli-ux'
+import initTemplate from '../../utils/init-template'
 
 const VERSION = {
   V3: 'vue3'
@@ -43,25 +44,19 @@ export default class VueCreate extends Command {
       return
     }
 
-    process.chdir(args.project)
-
     // 1. fetch project template from github
-    if (!process.env.TEST) {
-      cli.action.start('Pulling template from github', 'initializing...', {
-        stdout: true
-      })
+    cli.action.start('Pulling template from github', 'initializing...', {
+      stdout: true
+    })
 
-      // Note: should be dynamic in future
-      await pull('zjhiphop/@ming/template-vue3')
+    try {
+      await initTemplate(args.project, 'vue3')
+    } catch (err: any) {
+      cli.action.stop('Finished with error: ' + err.message)
+    }
 
-      // 2. add typescript support if needed
-      if (flags.useTs) {
-        try {
-          await exec('vue add typescript')
-        } catch (e) {
-          cli.action.stop('Finished with error.') // shows 'starting a process... custom message'
-        }
-      }
+    if (process.env.TEST) {
+      // TODO:  delete files generated
     }
 
     this.log(
