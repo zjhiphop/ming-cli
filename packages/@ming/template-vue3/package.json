@@ -1,6 +1,7 @@
 {
   "name": "@ming/template-vue3",
   "version": "0.0.1",
+  "private": false,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "vite",
