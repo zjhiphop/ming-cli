@@ -1,6 +1,6 @@
 import colors from 'picocolors'
 import type { ExecaChildProcess, Options as ExecaOptions } from 'execa'
-import { execa } from 'execa'
+import execa from 'execa'
 import { readFileSync, writeFileSync } from 'fs'
 import path from 'path'
 import prompts from 'prompts'
