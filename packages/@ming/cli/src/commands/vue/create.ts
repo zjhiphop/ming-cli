@@ -51,7 +51,8 @@ export default class VueCreate extends Command {
         stdout: true
       })
 
-      await pull('@ming/template-vue3')
+      // Note: should be dynamic in future
+      await pull('zjhiphop/@ming/template-vue3')
 
       // 2. add typescript support if needed
       if (flags.useTs) {

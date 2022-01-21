@@ -1,5 +1,5 @@
 {
-  "name": "template-vue3",
+  "name": "@ming/template-vue3",
   "version": "0.0.1",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
