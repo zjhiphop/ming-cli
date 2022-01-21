@@ -6,7 +6,9 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . --lerna-package @ming/template-vue3",
+    "release": "ts-node ../../../scripts/release.ts --skipBuild"
   },
   "dependencies": {
     "vue": "^3.2.25",

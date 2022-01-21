@@ -17,6 +17,12 @@
     "commit-msg": "pnpm exec ts-node scripts/verifyCommit.ts $1"
   },
   "devDependencies": {
+    "@types/prompts": "^2.0.14",
+    "conventional-changelog-cli": "^2.2.2",
+    "execa": "^6.0.0",
+    "minimist": "^1.2.5",
+    "semver": "^7.3.5",
+    "typescript": "^4.4.3",
     "vitepress": "^0.21.4"
   },
   "lint-staged": {
