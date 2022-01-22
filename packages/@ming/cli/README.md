@@ -1,5 +1,4 @@
-oclif-hello-world
-=================
+# oclif-hello-world
 
 oclif example Hello World CLI
 
@@ -10,32 +9,96 @@ oclif example Hello World CLI
 [![License](https://img.shields.io/npm/l/oclif-hello-world.svg)](https://github.com/oclif/hello-world/blob/main/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
-$ npm install -g mingcli
+$ npm install -g @minglabs-sz/cli
 $ mingcli COMMAND
 running command...
 $ mingcli (--version)
-mingcli/0.0.0 darwin-x64 node-v14.17.6
+@minglabs-sz/cli/0.0.1 darwin-x64 node-v12.18.0
 $ mingcli --help [COMMAND]
 USAGE
   $ mingcli COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`mingcli help [COMMAND]`](#mingcli-help-command)
-* [`mingcli plugins`](#mingcli-plugins)
-* [`mingcli plugins:inspect PLUGIN...`](#mingcli-pluginsinspect-plugin)
-* [`mingcli plugins:install PLUGIN...`](#mingcli-pluginsinstall-plugin)
-* [`mingcli plugins:link PLUGIN`](#mingcli-pluginslink-plugin)
-* [`mingcli plugins:uninstall PLUGIN...`](#mingcli-pluginsuninstall-plugin)
-* [`mingcli plugins update`](#mingcli-plugins-update)
+
+- [`mingcli create`](#mingcli-create)
+- [`mingcli hello PERSON`](#mingcli-hello-person)
+- [`mingcli hello world`](#mingcli-hello-world)
+- [`mingcli help [COMMAND]`](#mingcli-help-command)
+- [`mingcli plugins`](#mingcli-plugins)
+- [`mingcli plugins:inspect PLUGIN...`](#mingcli-pluginsinspect-plugin)
+- [`mingcli plugins:install PLUGIN...`](#mingcli-pluginsinstall-plugin)
+- [`mingcli plugins:link PLUGIN`](#mingcli-pluginslink-plugin)
+- [`mingcli plugins:uninstall PLUGIN...`](#mingcli-pluginsuninstall-plugin)
+- [`mingcli plugins update`](#mingcli-plugins-update)
+- [`mingcli vue`](#mingcli-vue)
+- [`mingcli vue create PROJECT`](#mingcli-vue-create-project)
+- [`mingcli vue generate`](#mingcli-vue-generate)
+
+## `mingcli create`
+
+Vue project Manager
+
+```
+USAGE
+  $ mingcli create
+
+DESCRIPTION
+  Vue project Manager
+```
+
+## `mingcli hello PERSON`
+
+Say hello😄
+
+```
+USAGE
+  $ mingcli hello [PERSON] -f <value>
+
+ARGUMENTS
+  PERSON  Person to say hello to
+
+FLAGS
+  -f, --from=<value>  (required) Whom is saying hello
+
+DESCRIPTION
+  Say hello😄
+
+EXAMPLES
+  $ oex hello friend --from oclif
+  hello friend from oclif! (./src/commands/hello/index.ts)
+```
+
+## `mingcli hello world`
+
+Say hello world
+
+```
+USAGE
+  $ mingcli hello world
+
+DESCRIPTION
+  Say hello world
+
+EXAMPLES
+  $ oex hello world
+  hello world! (./src/commands/hello/world.ts)
+```
 
 ## `mingcli help [COMMAND]`
 
@@ -75,7 +138,7 @@ EXAMPLES
   $ mingcli plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.0.11/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.0.12/src/commands/plugins/index.ts)_
 
 ## `mingcli plugins:inspect PLUGIN...`
 
@@ -130,7 +193,7 @@ ALIASES
   $ mingcli plugins add
 
 EXAMPLES
-  $ mingcli plugins:install myplugin 
+  $ mingcli plugins:install myplugin
 
   $ mingcli plugins:install https://github.com/someuser/someplugin
 
@@ -202,4 +265,54 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+## `mingcli vue`
+
+Vue project Manager
+
+```
+USAGE
+  $ mingcli vue
+
+DESCRIPTION
+  Vue project Manager
+```
+
+## `mingcli vue create PROJECT`
+
+Create Vue project for Web
+
+```
+USAGE
+  $ mingcli vue create [PROJECT] [-v <value>] [-t]
+
+ARGUMENTS
+  PROJECT  Project name
+
+FLAGS
+  -t, --useTs               whether use ts? (default not use typescript)
+  -v, --vueVersion=<value>  [default: vue3] which version to use? (default use Vue3)
+
+DESCRIPTION
+  Create Vue project for Web
+
+EXAMPLES
+  $ mingcli vue projectName -v vue3 -t true
+```
+
+## `mingcli vue generate`
+
+Generate Vue files including: view,component,store,plugin,mixin,directive,middleware
+
+```
+USAGE
+  $ mingcli vue generate
+
+DESCRIPTION
+  Generate Vue files including: view,component,store,plugin,mixin,directive,middleware
+
+EXAMPLES
+  $ mingcli vue add
+```
+
 <!-- commandsstop -->
