@@ -17,7 +17,16 @@ const {
   red,
   reset
 } = require('kolorist')
+const {
+  fetchNpmAndExtract,
+  emptyDir,
+  isValidPackageName,
+  toValidPackageName,
+  isEmpty
+} = require('@minglabs-sz/utils')
+const { exec } = require('child_process')
 
+const ORG = 'minglabs-sz'
 const cwd = process.cwd()
 
 const FRAMEWORKS = [
@@ -42,9 +51,10 @@ const FRAMEWORKS = [
     color: green,
     variants: [
       {
-        name: 'vue',
+        name: 'vue3',
         display: 'JavaScript',
-        color: yellow
+        color: yellow,
+        isSupported: true
       },
       {
         name: 'vue-ts',
@@ -119,6 +129,8 @@ const FRAMEWORKS = [
   }
 ]
 
+const SUPPORTED_LIST = ['vue3']
+
 const TEMPLATES = FRAMEWORKS.map(
   (f) => (f.variants && f.variants.map((v) => v.name)) || [f.name]
 ).reduce((a, b) => a.concat(b), [])
@@ -131,7 +143,7 @@ async function init() {
   let targetDir = argv._[0]
   let template = argv.template || argv.t
 
-  const defaultProjectName = !targetDir ? 'vite-project' : targetDir
+  const defaultProjectName = !targetDir ? 'ming-project' : targetDir
 
   let result = {}
 
@@ -234,29 +246,24 @@ async function init() {
 
   console.log(`\nScaffolding project in ${root}...`)
 
-  const templateDir = path.join(__dirname, `template-${template}`)
+  // Check the selected option is supported or not
+  const pkg = `@${ORG}/template-${template}`
 
-  const write = (file, content) => {
-    const targetPath = renameFiles[file]
-      ? path.join(root, renameFiles[file])
-      : path.join(root, file)
-    if (content) {
-      fs.writeFileSync(targetPath, content)
-    } else {
-      copy(path.join(templateDir, file), targetPath)
-    }
+  if (!SUPPORTED_LIST.includes(variant)) {
+    console.log(
+      `${variant} is not supported yet, please contact: zjhiphop@gmail.com to support`
+    )
+
+    return
   }
 
-  const files = fs.readdirSync(templateDir)
-  for (const file of files.filter((f) => f !== 'package.json')) {
-    write(file)
-  }
+  await fetchNpmAndExtract(pkg, root)
 
-  const pkg = require(path.join(templateDir, `package.json`))
+  const pkgJSON = require(path.join(root, `package.json`))
 
-  pkg.name = packageName || targetDir
+  pkgJSON.name = packageName || targetDir
 
-  write('package.json', JSON.stringify(pkg, null, 2))
+  fs.writeFileSync('package.json', JSON.stringify(pkgJSON, null, 2))
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
@@ -276,59 +283,6 @@ async function init() {
       break
   }
   console.log()
-}
-
-function copy(src, dest) {
-  const stat = fs.statSync(src)
-  if (stat.isDirectory()) {
-    copyDir(src, dest)
-  } else {
-    fs.copyFileSync(src, dest)
-  }
-}
-
-function isValidPackageName(projectName) {
-  return /^(?:@[a-z0-9-*~][a-z0-9-*._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(
-    projectName
-  )
-}
-
-function toValidPackageName(projectName) {
-  return projectName
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/^[._]/, '')
-    .replace(/[^a-z0-9-~]+/g, '-')
-}
-
-function copyDir(srcDir, destDir) {
-  fs.mkdirSync(destDir, { recursive: true })
-  for (const file of fs.readdirSync(srcDir)) {
-    const srcFile = path.resolve(srcDir, file)
-    const destFile = path.resolve(destDir, file)
-    copy(srcFile, destFile)
-  }
-}
-
-function isEmpty(path) {
-  return fs.readdirSync(path).length === 0
-}
-
-function emptyDir(dir) {
-  if (!fs.existsSync(dir)) {
-    return
-  }
-  for (const file of fs.readdirSync(dir)) {
-    const abs = path.resolve(dir, file)
-    // baseline is Node 12 so can't use rmSync :(
-    if (fs.lstatSync(abs).isDirectory()) {
-      emptyDir(abs)
-      fs.rmdirSync(abs)
-    } else {
-      fs.unlinkSync(abs)
-    }
-  }
 }
 
 /**

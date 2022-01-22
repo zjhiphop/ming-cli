@@ -13,11 +13,9 @@
   "author": "zjhiphop@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "@minglabs-sz/utils": "workspace:^0.0.1",
     "kolorist": "^1.5.1",
     "minimist": "^1.2.5",
     "prompts": "^2.4.2"
-  },
-  "devDependencies": {
-    "@minglabs-sz/template-vue3": "workspace:^0.0.1"
   }
 }
