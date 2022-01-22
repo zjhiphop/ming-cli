@@ -1,0 +1,3 @@
+[submodule "packages/@ming/utils"]
+	path = packages/@ming/utils
+	url = git@github.com:zjhiphop/ming-utils.git
