@@ -7,7 +7,10 @@ const selfDestroyingSWVitePlugin = {
     this.emitFile({
       type: 'asset',
       fileName: 'service-worker.js',
-      source: fs.readFileSync(path.join(__dirname, './self-destroying-service-worker.js'), 'utf-8')
+      source: fs.readFileSync(
+        path.join(__dirname, './self-destroying-service-worker.js'),
+        'utf-8'
+      )
     })
   }
 }
@@ -63,7 +66,7 @@ module.exports = {
   ],
 
   themeConfig: {
-    repo: '@ming/ming-cli',
+    repo: 'zjhiphop/ming-cli',
     docsDir: 'docs',
     docsBranch: 'master',
     editLinks: true,
@@ -86,11 +89,11 @@ module.exports = {
             link: '/config/'
           },
           {
-            text: 'Plugins',
+            text: 'Components',
             items: [
               {
-                text: 'Core Plugins',
-                link: '/core-plugins/'
+                text: 'Components',
+                link: '/components/'
               }
             ]
           }
@@ -132,22 +135,6 @@ module.exports = {
               collapsable: false,
               children: [
                 {
-                  text: 'Browser Compatibility',
-                  link: '/guide/browser-compatibility'
-                },
-                {
-                  text: 'HTML and Static Assets',
-                  link: '/guide/html-and-static-assets'
-                },
-                {
-                  text: 'Working with CSS',
-                  link: '/guide/css'
-                },
-                {
-                  text: 'Working with Webpack',
-                  link: '/guide/webpack'
-                },
-                {
                   text: 'Modes and Environment Variables',
                   link: '/guide/mode-and-env'
                 },
@@ -160,64 +147,23 @@ module.exports = {
                   link: '/guide/deployment'
                 },
                 {
-                  text: 'Troubleshooting',
-                  link: '/guide/troubleshooting'
+                  text: 'Reference Sites',
+                  link: '/guide/reference'
                 }
               ]
             }
           ],
-
-          '/dev-guide/': [
+          links: [
             {
-              text: 'Plugin Development Guide',
-              link: '/dev-guide/plugin-dev'
-            },
-            {
-              text: 'API reference',
-              collapsable: false,
-              children: [
+              text: 'Links',
+              items: [
                 {
-                  text: 'Plugin API',
-                  link: '/dev-guide/plugin-api'
+                  text: 'Slack Chat',
+                  link: 'https://minglabs.slack.com/archives/CP20FBCE5'
                 },
                 {
-                  text: 'Generator API',
-                  link: '/dev-guide/generator-api'
-                }
-              ]
-            },
-            {
-              text: 'UI Development',
-              collapsable: false,
-              children: [
-                {
-                  text: 'UI Plugin Info',
-                  link: '/dev-guide/ui-info'
-                },
-                {
-                  text: 'UI Plugin API',
-                  link: '/dev-guide/ui-api'
-                },
-                {
-                  text: 'UI Localization',
-                  link: '/dev-guide/ui-localization'
-                }
-              ]
-            }
-          ],
-
-          '/core-plugins/': [
-            {
-              text: 'Core Vue CLI Plugins',
-              collapsable: false,
-              children: [
-                {
-                  text: '@vue/cli-plugin-babel',
-                  link: '/core-plugins/babel'
-                },
-                {
-                  text: '@vue/cli-plugin-typescript',
-                  link: '/core-plugins/typescript'
+                  text: 'Changelog',
+                  link: 'https://github.com/zjhiphop/ming-cli/package/@ming/cli/CHANGELOG.md'
                 }
               ]
             }
@@ -239,17 +185,8 @@ module.exports = {
             link: '/zh/config/'
           },
           {
-            text: '插件',
-            items: [
-              {
-                text: 'Babel',
-                link: 'https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli-plugin-babel/README.md'
-              },
-              {
-                text: 'TypeScript',
-                link: 'https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli-plugin-typescript/README.md'
-              }
-            ]
+            text: '组件',
+            link: '/zh/components/'
           }
         ],
         sidebar: {
@@ -272,10 +209,6 @@ module.exports = {
                   link: '/zh/guide/creating-a-project'
                 },
                 {
-                  text: '插件和 Preset',
-                  link: '/zh/guide/plugins-and-presets'
-                },
-                {
                   text: 'CLI 服务',
                   link: '/zh/guide/cli-service'
                 }
@@ -285,22 +218,6 @@ module.exports = {
               text: '开发',
               collapsable: false,
               children: [
-                {
-                  text: '浏览器兼容性',
-                  link: '/zh/guide/browser-compatibility'
-                },
-                {
-                  text: 'HTML 和静态资源',
-                  link: '/zh/guide/html-and-static-assets'
-                },
-                {
-                  text: 'CSS 相关',
-                  link: '/zh/guide/css'
-                },
-                {
-                  text: 'webpack 相关',
-                  link: '/zh/guide/webpack'
-                },
                 {
                   text: '模式和环境变量',
                   link: '/zh/guide/mode-and-env'
@@ -312,12 +229,31 @@ module.exports = {
                 {
                   text: '部署',
                   link: '/zh/guide/deployment'
+                },
+                {
+                  text: '相关网站',
+                  link: '/zh/guide/browser-compatibility'
                 }
               ]
             }
           ],
+          '/zh/links': [
+            {
+              text: '链接',
+              items: [
+                {
+                  text: 'Slack聊天',
+                  link: 'https://minglabs.slack.com/archives/CP20FBCE5'
+                },
+                {
+                  text: '历史记录',
+                  link: 'https://github.com/zjhiphop/ming-cli/package/@ming/cli/CHANGELOG.md'
+                }
+              ]
+            }
+          ]
         }
       }
     }
-  },
+  }
 }
