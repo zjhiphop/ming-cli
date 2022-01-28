@@ -146,3 +146,6 @@ Default:
   }
 
 ```
+### Inspired by
+> https://github.com/sexyHuang/postcss-px2vp
+> https://github.com/evrone/postcss-px-to-viewport/
