@@ -1,0 +1,24 @@
+{
+  "name": "postcss-px2viewport",
+  "version": "0.0.1",
+  "description": "A plugin help to convert css px to viewport",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests --inspect",
+    "publish": "npx clean-publish"
+  },
+  "keywords": [
+    "css",
+    "tailwind",
+    "viewport",
+    "px"
+  ],
+  "author": "zjhiphop@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "postcss": "^8.4.5"
+  },
+  "dependencies": {
+    "clean-publish": "^4.0.0"
+  }
+}
