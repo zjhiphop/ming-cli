@@ -4,8 +4,7 @@
   "description": "A plugin help to convert css px to viewport based on media query width",
   "main": "index.js",
   "scripts": {
-    "test": "node tests --inspect",
-    "publish": "npx clean-publish"
+    "test": "node tests --inspect"
   },
   "keywords": [
     "css",
