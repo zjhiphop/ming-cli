@@ -1,5 +1,5 @@
 {
-  "name": "postcss-px2vw",
+  "name": "postcss-px2vwpt",
   "version": "0.0.1",
   "description": "A plugin help to convert css px to viewport based on media query width",
   "main": "index.js",
