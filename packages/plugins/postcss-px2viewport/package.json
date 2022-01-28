@@ -1,5 +1,5 @@
 {
-  "name": "postcss-px2viewport",
+  "name": "postcss-px2vp",
   "version": "0.0.1",
   "description": "A plugin help to convert css px to viewport",
   "main": "index.js",

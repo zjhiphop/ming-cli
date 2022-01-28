@@ -4,7 +4,7 @@
 
 ### Installation
 
-`npm install postcss-px2viewport`
+`npm install postcss-px2vp`
 
 ### Features
 
@@ -63,7 +63,7 @@ will be converted to:
 
 var fs = require('fs')
 var postcss = require('postcss')
-var px2viewport = require('postcss-px2viewport')
+var px2viewport = require('postcss-px2vp')
 var css = `
 .class2 {
   border: 1px solid black;
@@ -142,7 +142,7 @@ Default:
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
-    "postcss-pixel2viewport": {}
+    "postcss-px2vp": {}
   }
 
 ```
