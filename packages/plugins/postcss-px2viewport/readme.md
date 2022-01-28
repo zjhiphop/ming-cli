@@ -12,8 +12,8 @@
 - Convert px value based on media query value, if there is no media query, the default relative screen size will be 750px
 
 ```html
-.class { margin: -10px .5vh; padding: 5vmin 9.5px 1px; border: 3px solid black;
-border-bottom-width: 1px; font-size: 14px;/*on*/ line-height: 20px;/*off*/ }
+.class { margin: -10px 0.5vh; padding: 5vmin 9.5px 1px; border: 3px solid black;
+border-bottom-width: 1px; font-size: 14px; /*on*/ line-height: 20px; /*off*/ }
 .class2 { border: 1px solid black; margin-bottom: 1px; font-size: 20px;
 line-height: 30px; } @media (min-width: 750px) { .class3 { font-size: 16px;
 line-height: 22px; } } @media (min-width: 1440px) { .class3 { font-size: 16px;

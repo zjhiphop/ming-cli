@@ -5,7 +5,8 @@ var postcss = require('postcss')
 var px2viewport = require('..')
 var css = fs.readFileSync('./tests/main.css', 'utf8')
 var options = {
-  propertyBlackList: ['font-size']
+  propertyBlackList: ['font-size'],
+  selectorBlackList: ['.class2']
 }
 var processedCss = postcss(px2viewport(options)).process(css).css
 

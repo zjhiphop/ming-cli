@@ -13,7 +13,8 @@ const defaults = {
   minPixelValue: 2,
   enableConvertComment: 'on',
   disableConvertComment: 'off',
-  mediaQuery: false
+  mediaQuery: false,
+  selectorBlackList: []
 }
 
 function createPxReplace(viewportSize, minPixelValue, viewportUnit) {
@@ -30,6 +31,15 @@ function blacklistedProperty(blacklist, property) {
   return blacklist.some(function (regex) {
     if (typeof regex === 'string') return property.indexOf(regex) !== -1
     return property.match(regex)
+  })
+}
+
+function blacklistedSelector(blacklist, selector) {
+  if (typeof selector !== 'string') return
+
+  return blacklist.some((rule) => {
+    if (typeof rule === 'string') return selector.includes(rule)
+    return rule.test(selector)
   })
 }
 
@@ -59,6 +69,7 @@ module.exports = (options) => {
       css.walkDecls(function (decl, i) {
         const next = decl.next()
         const commentText = next && next.type == 'comment' && next.text
+
         if (
           decl.value.indexOf('px') === -1 ||
           commentText === opts.disableConvertComment
@@ -66,9 +77,11 @@ module.exports = (options) => {
           commentText === opts.disableConvertComment && next.remove()
           return
         }
+
         if (
           commentText === opts.enableConvertComment ||
-          !blacklistedProperty(opts.propertyBlacklist, decl.prop)
+          (!blacklistedProperty(opts.propertyBlacklist, decl.prop) &&
+            !blacklistedSelector(opts.selectorBlackList, decl.parent.selector))
         ) {
           commentText === opts.enableConvertComment && next.remove()
           // 1. check whether there is a parent is mediaQuery
