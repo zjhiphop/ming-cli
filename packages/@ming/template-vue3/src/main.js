@@ -1,5 +1,6 @@
 import { createApp, h } from 'vue'
 import App from './App.vue'
+import components from "./common/components/"
 
 (async () => {
   const routerPromise = await import('./routers');
@@ -10,7 +11,5 @@ import App from './App.vue'
 
   const app = createApp(App)
 
-  app.use(routes)
-
-  app.mount('#app')
+  app.use(routes).use(components).mount('#app')
 })();
