@@ -14,7 +14,9 @@ const store = {
   }),
 
   async setScreen(screen) {
-    store.store = screen
+    store.store.isMobile = screen.isMobile
+    store.store.isPc = screen.isPc
+    store.store.isTablet = screen.isTablet
   }
 }
 

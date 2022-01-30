@@ -1,11 +1,29 @@
-<script setup>
+<script>
 // This starter template is using Vue 3 <script setup> SFCs
 // Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import HelloWorld from "./common/components/HelloWorld.vue";
+import { onMounted } from 'vue'
+
+export default {
+  props: ['store'],
+  data() {
+    return {}
+  },
+  setup() {
+    onMounted(() => {})
+  }
+}
 </script>
 
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
+  <p>
+    Debug: <br />
+    isMobile: {{ store.isMobile }}<br />
+    isPc: {{ store.isPc }}<br />
+    isTablet: {{ store.isTablet }}<br />
+    fontLoaded: {{ store.fontLoaded }}<br />
+  </p>
+
   <p>
     <router-link to="/">Home</router-link> |
     <router-link to="/nest">Nest Page</router-link> |
