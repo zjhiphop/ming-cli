@@ -1,8 +1,9 @@
 const importAll = r => Object.keys(r)
-  .map(key => key.slice(2).replace('.vue', '').split('/'));
+  .map(key => key.slice(2).replace('.vue', '').split('/').filter(Boolean));
 
 // scan "views" dir, find all vue files inside it
-const pages = importAll(import.meta.glob('../views/**/*.vue'))
+const components = import.meta.glob('../views/**/*.vue')
+const pages = importAll(components)
 
 const generateRoute = path => {
   // Note: remove first element if route starts with index
@@ -28,7 +29,7 @@ const generateRoute = path => {
   } else if (lastElement.startsWith('_')) {
     path[path.length - 1] = lastElement.replace('_', ':');
   }
-  return path.map(p => p.toLowerCase()).join('/').replace('/views', '')
+  return path.map(p => p.toLowerCase()).join('/').replace('views', '')
 }
 
 const childrenFilter = p => ~p.indexOf('^')
@@ -66,14 +67,19 @@ export default pages
   // Note: remove nested routes from pages
   .filter(path => !path.some(childrenFilter))
   .map(async path => {
-    const { default: component } = await import(/* @vite-ignore */`../${path.join('/')}.vue`)
+    const componentPath = `../${path.join('/')}.vue`
+
+    const component = components[componentPath]
+
     const { layout, middlewares, name } = component
-    const route = `/${generateRoute([...path])}`
+    const route = `${generateRoute([...path])}`
+
     let children = []
     if (childrenByPath[route]) {
       const promises = childrenByPath[route].map(async ({ path, route }) => {
-        const { default: childComponent } =
-          await import(/* @vite-ignore */`../${path.join('/')}.vue`)
+        const componentPath = `../${path.join('/')}.vue`
+
+        const childComponent = components[componentPath]
 
         const {
           layout: childLayout,
@@ -93,6 +99,7 @@ export default pages
       })
       children = await Promise.all(promises)
     }
+
     return {
       path: route,
       name,

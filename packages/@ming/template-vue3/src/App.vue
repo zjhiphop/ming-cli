@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <img alt="Vue logo" src="./assets/logo.svg" />
   <p>
     Debug: <br />
     isMobile: {{ store.isMobile }}<br />

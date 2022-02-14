@@ -43,7 +43,7 @@ function initMediaQuery() {
   }
 
   let smScreen = window.matchMedia(
-    `(min-width: ${sm}) and (max-width: ${parseInt(md, 10) - 1}px)`
+    `(max-width: ${parseInt(md, 10) - 1}px)`
   )
   let mdScreen = window.matchMedia(
     `(min-width: ${md}) and (max-width: ${parseInt(lg, 10) - 1}px)`
