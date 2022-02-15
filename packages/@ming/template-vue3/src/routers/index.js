@@ -4,7 +4,7 @@ import routes from './routes'
 export default Promise.all(routes).then(routes => {
   const router = createRouter({
     history: createWebHashHistory(),
-    routes
+    routes: routes.concat([{ path: '/:pathMatch(.*)', redirect: '/' }])
   })
 
   router.beforeEach((to, from, next) => {

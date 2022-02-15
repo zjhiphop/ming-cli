@@ -28,7 +28,9 @@ export default {
     <router-link to="/">Home</router-link> |
     <router-link to="/nest">Nest Page</router-link> |
     <router-link to="/nest/create">Nest create</router-link> |
-    <router-link to="/nest/1">Nest 1 details</router-link>
+    <router-link to="/nest/1">Nest 1 details</router-link> |
+    <router-link :to="{name: 'User'}">User</router-link> |
+    <router-link to="/user/detail">User detail</router-link>
   </p>
   <router-view></router-view>
 </template>

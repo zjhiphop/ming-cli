@@ -10,6 +10,7 @@ const generateRoute = path => {
   if (path[0].toLowerCase().startsWith('index') && path.length > 1) {
     path.shift()
   }
+
   // Note: handle root routes
   if (path.length === 1) {
     const shortcut = path[0].toLowerCase()
@@ -20,8 +21,10 @@ const generateRoute = path => {
         ? shortcut.replace('_', ':')
         : shortcut;
   }
+
   // Note: handle other routes
   const lastElement = path[path.length - 1]
+
   // Note: remove last element in array if it is index
   if (lastElement.toLowerCase().startsWith('index')) {
     path.pop()
@@ -29,10 +32,11 @@ const generateRoute = path => {
   } else if (lastElement.startsWith('_')) {
     path[path.length - 1] = lastElement.replace('_', ':');
   }
+
   return path.map(p => p.toLowerCase()).join('/').replace('views', '')
 }
 
-const childrenFilter = p => ~p.indexOf('^')
+const childrenFilter = p => p.startsWith('^')
 
 const childrenByPath = pages
   // Note: filter pages by children routes
@@ -41,11 +45,13 @@ const childrenByPath = pages
     // Note: copy path and remove special char ^
     const copy = [...path]
     copy[copy.length - 1] = copy[copy.length - 1].slice(1)
+
     // Note: generate key to identify parent
-    const key = `/${generateRoute(copy.slice(0, copy.length - 1))}`
+    const key = `${generateRoute(copy.slice(0, copy.length - 1))}`
+
     return {
       path,
-      route: `/${generateRoute(copy)}`,
+      route: `${generateRoute(copy)}`,
       key
     }
   })
@@ -61,6 +67,8 @@ const childrenByPath = pages
     return acc
   }, {})
 
+
+
 const defaultLayout = 'AppDefaultLayout'
 
 export default pages
@@ -69,17 +77,20 @@ export default pages
   .map(async path => {
     const componentPath = `../${path.join('/')}.vue`
 
-    const component = components[componentPath]
+    const component = (await components[componentPath]()).default
 
     const { layout, middlewares, name } = component
+
     const route = `${generateRoute([...path])}`
 
     let children = []
+
+
     if (childrenByPath[route]) {
       const promises = childrenByPath[route].map(async ({ path, route }) => {
         const componentPath = `../${path.join('/')}.vue`
 
-        const childComponent = components[componentPath]
+        const childComponent = (await components[componentPath]()).default
 
         const {
           layout: childLayout,
