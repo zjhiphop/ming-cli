@@ -4,12 +4,17 @@
 
 ### Installation
 
-`npm install postcss-px2vp`
+`npm install postcss-px2vwpt`
 
 ### Features
 
+![Demo](assets/poster.jpg 'A case to illustrate the responsive breakpoint')
+
 - Convert px value to viewport with by default, support convert to other unit by configuration
 - Convert px value based on media query value, if there is no media query, the default relative screen size will be 750px
+- Convert px value be different media query scope
+- Min scale or max scale both supported, min scale meaning it will use the min-width value as base to convert in the media query scope
+- Max screen size, it enable to control the maximum screen size to scale
 
 ```html
 .class { margin: -10px 0.5vh; padding: 5vmin 9.5px 1px; border: 3px solid black;
@@ -155,4 +160,5 @@ Default:
 
 ### Inspired by
 
-> https://github.com/sexyHuang/postcss-px2vp > https://github.com/evrone/postcss-px-to-viewport/
+> https://github.com/sexyHuang/postcss-px2vp
+> https://github.com/evrone/postcss-px-to-viewport/
