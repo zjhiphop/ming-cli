@@ -27,3 +27,24 @@
     line-height: 22px;
   }
 }
+
+@media (max-width: 750px) {
+  .class3 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 1440px) {
+  .class3 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (min-width: 2000px) and (max-width: 2800px) {
+  .class3 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}

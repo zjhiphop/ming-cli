@@ -113,6 +113,9 @@ Default:
   viewportUnit: 'vw',
   propertyBlacklist: [],
   minPixelValue: 2,
+  enableMaxScale: false,
+  maxPixelValue: 1440,
+  maxBreakpointsPixelValue: 9999,
   enableConvertComment: 'on',
   disableConvertComment: 'off',
   mediaQuery: false
@@ -127,6 +130,9 @@ Default:
   - If value is regexp, it checks to see if the property matches the regexp.
     - `[/^font$/]` will match `font` but not `font-size`
 - `minPixelValue` (Number) Set the minimum pixel value to replace.
+- `enableMaxScale` (Boolean) Whether to enable to scale the value based on the bigger value of media query
+- `maxPixelValue` (Number) The max value used to scale, when the page size is bigger than this value will only use this value to scale
+- `maxBreakpointsPixelValue` (Number) The max page size to scale, when screen size reached this value, page will not be scaled any more.
 - `enableConvertComment` (String) content of comment for enable convert px unit before the declaration.
 - `disableConvertComment` (String) content of comment for disable convert px unit before the declaration.
 - `mediaQuery` (Boolean) Allow px to be converted in media queries.
@@ -146,6 +152,7 @@ Default:
   }
 
 ```
+
 ### Inspired by
-> https://github.com/sexyHuang/postcss-px2vp
-> https://github.com/evrone/postcss-px-to-viewport/
+
+> https://github.com/sexyHuang/postcss-px2vp > https://github.com/evrone/postcss-px-to-viewport/

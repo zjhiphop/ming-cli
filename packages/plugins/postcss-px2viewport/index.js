@@ -11,6 +11,9 @@ const defaults = {
   viewportUnit: 'vw',
   propertyBlacklist: [],
   minPixelValue: 2,
+  enableMaxScale: false, // whether use the max value of the range as the basic value to convert
+  maxPixelValue: 1440,
+  maxBreakpointsPixelValue: 9999,
   enableConvertComment: 'on',
   disableConvertComment: 'off',
   mediaQuery: false,
@@ -22,7 +25,18 @@ function createPxReplace(viewportSize, minPixelValue, viewportUnit) {
     if (!$1) return m
     const pixels = parseFloat($1)
     if (pixels <= minPixelValue) return m
+
     return parseFloat(((pixels / viewportSize) * 100).toFixed(5)) + viewportUnit
+  }
+}
+
+function createMaxPxReplaceToPx(maxPixel, maxSize, minPixelValue) {
+  return function (m, $1) {
+    if (!$1) return m
+    const pixels = parseFloat($1)
+    if (pixels <= minPixelValue) return m
+
+    return parseFloat(((pixels / maxPixel) * maxSize).toFixed(5)) + 'px'
   }
 }
 
@@ -77,7 +91,6 @@ module.exports = (options) => {
           commentText === opts.disableConvertComment && next.remove()
           return
         }
-
         if (
           commentText === opts.enableConvertComment ||
           (!blacklistedProperty(opts.propertyBlacklist, decl.prop) &&
@@ -89,17 +102,34 @@ module.exports = (options) => {
           // 2. if yes, find the the min-width value, if it's unit is px,
           // then convert it to `viewportUnit` relative to min-width value
           if (parentMediaRule && parentMediaRule.params.indexOf('px') > -1) {
-            const matches = parentMediaRule.params.match(/min-width:\s+(\d+)px/)
+            const minMatches =
+              parentMediaRule.params.match(/min-width:\s+(\d+)px/)
+            const maxMatches =
+              parentMediaRule.params.match(/max-width:\s+(\d+)px/)
+            const matches = opts.enableMaxScale ? maxMatches : minMatches
+
             if (matches) {
-              const mediaPxReplace = createPxReplace(
-                matches[1],
-                opts.minPixelValue,
-                opts.viewportUnit
-              )
+              let mediaPxReplace = null
+
+              if (parseFloat(matches[1]) > opts.maxBreakpointsPixelValue) {
+                mediaPxReplace = createMaxPxReplaceToPx(
+                  opts.maxPixelValue,
+                  opts.maxBreakpointsPixelValue,
+                  opts.minPixelValue
+                )
+              } else {
+                mediaPxReplace = createPxReplace(
+                  matches[1],
+                  opts.minPixelValue,
+                  opts.viewportUnit
+                )
+              }
+
               decl.value = decl.value.replace(pxRegex, mediaPxReplace)
+            } else {
+              decl.value = decl.value.replace(pxRegex, pxReplace)
             }
           }
-          decl.value = decl.value.replace(pxRegex, pxReplace)
         }
       })
 
