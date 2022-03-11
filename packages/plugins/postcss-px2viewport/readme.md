@@ -8,7 +8,7 @@
 
 ### Features
 
-![Demo](assets/poster.jpg 'A case to illustrate the responsive breakpoint')
+![Demo](https://raw.githubusercontent.com/zjhiphop/ming-cli/master/packages/plugins/postcss-px2viewport/assets/poster.jpg 'A case to illustrate the responsive breakpoint')
 
 - Convert px value to viewport with by default, support convert to other unit by configuration
 - Convert px value based on media query value, if there is no media query, the default relative screen size will be 750px
@@ -160,5 +160,4 @@ Default:
 
 ### Inspired by
 
-> https://github.com/sexyHuang/postcss-px2vp
-> https://github.com/evrone/postcss-px-to-viewport/
+> https://github.com/sexyHuang/postcss-px2vp > https://github.com/evrone/postcss-px-to-viewport/
