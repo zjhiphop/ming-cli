@@ -11,6 +11,9 @@
     "tailwind",
     "viewport",
     "postcss",
+    "responsive",
+    "vue",
+    "react",
     "px"
   ],
   "author": "zjhiphop@gmail.com",
