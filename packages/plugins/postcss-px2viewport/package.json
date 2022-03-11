@@ -10,6 +10,7 @@
     "css",
     "tailwind",
     "viewport",
+    "postcss",
     "px"
   ],
   "author": "zjhiphop@gmail.com",
