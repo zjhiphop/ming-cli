@@ -58,9 +58,10 @@ const FRAMEWORKS = [
         isSupported: true
       },
       {
-        name: 'vue-ts',
+        name: 'vue3-ts',
         display: 'TypeScript',
-        color: blue
+        color: blue,
+        isSupported: true
       }
     ]
   },
