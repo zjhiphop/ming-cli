@@ -23,7 +23,8 @@ const {
   emptyDir,
   isValidPackageName,
   toValidPackageName,
-  isEmpty
+  isEmpty,
+  resolveGitIgnore
 } = require('@minglabs-sz/utils')
 const { exec } = require('child_process')
 
@@ -266,6 +267,8 @@ async function init() {
   pkgJSON.name = packageName || targetDir
 
   fs.writeFileSync(root + '/package.json', JSON.stringify(pkgJSON, null, 2))
+
+  resolveGitIgnore(root)
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
   const pkgManager = pkgInfo ? pkgInfo.name : 'pnpm'
