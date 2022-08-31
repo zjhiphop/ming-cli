@@ -1,6 +1,6 @@
 {
   "name": "@minglabs-sz/template-vue3-ts",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": false,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
