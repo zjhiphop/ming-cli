@@ -246,14 +246,14 @@ async function init() {
   // determine template
   template = variant || framework || template
 
-  console.log(`\nScaffolding project in ${root}...`)
+  console.log(`\nScaffolding project(${template}) in ${root}...`)
 
   // Check the selected option is supported or not
   const pkg = `@${ORG}/template-${template}`
 
-  if (!SUPPORTED_LIST.includes(variant)) {
+  if (!SUPPORTED_LIST.includes(template)) {
     console.log(
-      `${variant} is not supported yet, please contact: zjhiphop@gmail.com to support`
+      `${template} is not supported yet, please contact: zjhiphop@gmail.com to support`
     )
 
     return
@@ -265,10 +265,10 @@ async function init() {
 
   pkgJSON.name = packageName || targetDir
 
-  fs.writeFileSync('package.json', JSON.stringify(pkgJSON, null, 2))
+  fs.writeFileSync(root + '/package.json', JSON.stringify(pkgJSON, null, 2))
 
   const pkgInfo = pkgFromUserAgent(process.env.npm_config_user_agent)
-  const pkgManager = pkgInfo ? pkgInfo.name : 'npm'
+  const pkgManager = pkgInfo ? pkgInfo.name : 'pnpm'
 
   console.log(`\nDone. Now run:\n`)
   if (root !== cwd) {
