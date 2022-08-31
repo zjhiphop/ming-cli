@@ -1,3 +1,12 @@
+## [0.0.8](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.6...create-minglabs@0.0.8) (2022-08-31)
+
+
+### Bug Fixes
+
+* fix create-ming init package issue ([7087cd2](https://github.com/zjhiphop/ming-cli/commit/7087cd245a134aaf5f6dbe667fc5365f5115d0c9))
+
+
+
 ## 0.0.6 (2022-08-31)
 
 
