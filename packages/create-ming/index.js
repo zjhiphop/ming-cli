@@ -131,7 +131,7 @@ const FRAMEWORKS = [
   }
 ]
 
-const SUPPORTED_LIST = ['vue3']
+const SUPPORTED_LIST = ['vue3', 'vue3-ts']
 
 const TEMPLATES = FRAMEWORKS.map(
   (f) => (f.variants && f.variants.map((v) => v.name)) || [f.name]
