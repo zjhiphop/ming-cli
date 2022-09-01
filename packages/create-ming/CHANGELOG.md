@@ -1,3 +1,12 @@
+## [0.0.13](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.12...create-minglabs@0.0.13) (2022-09-01)
+
+
+### Features
+
+* update utils deps version to 0.0.4 ([b9890ff](https://github.com/zjhiphop/ming-cli/commit/b9890ff305f3f8e33457c62b782e12f5f10b8a71))
+
+
+
 ## [0.0.12](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.11...create-minglabs@0.0.12) (2022-09-01)
 
 
