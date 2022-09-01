@@ -41,7 +41,7 @@
     "vite": "^2.7.2"
   },
   "simple-git-hooks": {
-    "commit-msg": "pnpm exec ts-node scripts/verifyCommit.ts $1"
+    "commit-msg": "pnpm exec node scripts/verifyCommit.js $1"
   },
   "husky": {
     "hooks": {
