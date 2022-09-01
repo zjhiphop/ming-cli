@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint:markup": "vue-tsc --noEmit",
     "lint:script": "eslint --ext .ts,vue --ignore-path .gitignore .",
-    "lint:style": "stylelint --fix **/*.{css,scss,vue}"
+    "lint:style": "stylelint --fix **/*.{css,scss,vue}",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . --lerna-package @ming/template-vue3-ts"
   },
   "dependencies": {
     "stylelint": "^14.11.0",

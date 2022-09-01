@@ -4,6 +4,7 @@
   "private": false,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "postinstall": "git config core.hooksPath; npx simple-git-hooks",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
