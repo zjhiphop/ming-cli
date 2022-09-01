@@ -13,7 +13,7 @@
     "release": "ts-node ../../scripts/release.ts --skipBuild"
   },
   "keywords": [
-    "scallford",
+    "scaffold",
     "frontend"
   ],
   "author": "zjhiphop@gmail.com",
