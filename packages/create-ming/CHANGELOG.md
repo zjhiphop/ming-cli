@@ -1,3 +1,12 @@
+## [0.0.11](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.10...create-minglabs@0.0.11) (2022-09-01)
+
+
+### Bug Fixes
+
+* correct wrong keyword ([2830bbb](https://github.com/zjhiphop/ming-cli/commit/2830bbbe80e7b21c91499252f3cf8e675da997bd))
+
+
+
 ## [0.0.10](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.6...create-minglabs@0.0.10) (2022-08-31)
 
 
