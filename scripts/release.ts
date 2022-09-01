@@ -152,14 +152,7 @@ async function publishPackage(
   version: string,
   runIfNotDry: RunFn | DryRunFn
 ): Promise<void> {
-  const publicArgs = [
-    'publish',
-    '--no-git-tag-version',
-    '--new-version',
-    version,
-    '--access',
-    'public'
-  ]
+  const publicArgs = ['publish', '--access', 'public']
   if (args.tag) {
     publicArgs.push(`--tag`, args.tag)
   }
