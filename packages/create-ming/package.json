@@ -1,6 +1,6 @@
 {
   "name": "create-minglabs",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Ming frontend scalfford tool",
   "main": "index.js",
   "bin": {

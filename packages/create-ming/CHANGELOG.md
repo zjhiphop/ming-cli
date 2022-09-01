@@ -1,3 +1,7 @@
+## [0.0.12](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.11...create-minglabs@0.0.12) (2022-09-01)
+
+
+
 ## [0.0.11](https://github.com/zjhiphop/ming-cli/compare/create-minglabs@0.0.10...create-minglabs@0.0.11) (2022-09-01)
 
 
