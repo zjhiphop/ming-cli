@@ -166,7 +166,7 @@ async function publishPackage(
   try {
     // important: we still use Yarn 1 to publish since we rely on its specific
     // behavior
-    await runIfNotDry('yarn', publicArgs, {
+    await runIfNotDry('pnpm', publicArgs, {
       stdio: 'pipe'
     })
     console.log(colors.green(`Successfully published ${pkgName}@${version}`))
