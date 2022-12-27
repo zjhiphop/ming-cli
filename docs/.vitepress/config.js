@@ -117,7 +117,17 @@ module.exports = {
               children: [
                 {
                   text: 'Creating a Project',
-                  link: '/guide/creating-a-project'
+                  collapsable: false,
+                  children: [
+                    {
+                      text: 'Vanilla JS',
+                      link: '/guide/create/creating-a-project'
+                    },
+                    {
+                      text: 'TypeScript JS',
+                      link: '/guide/create/creating-a-project-ts'
+                    }
+                  ]
                 },
                 {
                   text: 'Plugins and Presets',
