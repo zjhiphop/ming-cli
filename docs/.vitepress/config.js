@@ -139,7 +139,18 @@ module.exports = {
                 }
               ]
             },
-
+            {
+              text: 'Mobile App',
+              collapsable: false,
+            },
+            {
+              text: 'Mini Programme',
+              collapsable: false,
+            },
+            {
+              text: 'TV App and others',
+              collapsable: false,
+            },
             {
               text: 'Development',
               collapsable: false,
