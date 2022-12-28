@@ -152,11 +152,23 @@ module.exports = {
             },
             {
               text: 'Mini Programme',
-              collapsable: false,
+              collapsable: false, children: [
+                {
+                  text: 'Overview',
+                  link: '/guide/miniprogram/',
+                  collapsable: true
+                },
+              ]
             },
             {
               text: 'TV App and others',
-              collapsable: false,
+              collapsable: false, children: [
+                {
+                  text: 'Overview',
+                  link: '/guide/tv/',
+                  collapsable: true
+                },
+              ]
             },
             {
               text: 'Development',
