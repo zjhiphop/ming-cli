@@ -142,6 +142,13 @@ module.exports = {
             {
               text: 'Mobile App',
               collapsable: false,
+              children: [
+                {
+                  text: 'Overview',
+                  link: '/guide/mobile/',
+                  collapsable: true
+                },
+              ]
             },
             {
               text: 'Mini Programme',
